@@ -1,0 +1,1271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>webdesign12 | Official Portfolio</title>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Space+Grotesk:wght@500;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <!-- Devicon Library for Brand Icons -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" />
+    
+    <style>
+        /* --- Default Light Theme Variables --- */
+        :root {
+            --primary: #ff4d6d;
+            --bg-color: #ffffff;
+            --card-bg: #f8fafc;
+            --text-main: #1e293b;
+            --text-dim: #64748b;
+            --heading-color: #0f172a;
+            --border-color: rgba(0,0,0,0.05);
+            --star-color: #fbbf24;
+            --nav-bg: rgba(255, 255, 255, 0.9);
+            --section-dark-bg: #0f172a;
+            --inline-code-bg: #f1f5f9;
+            --inline-code-text: #0f172a;
+        }
+
+        /* --- Dark Theme Variables --- */
+        .dark-mode {
+            --bg-color: #0f172a;
+            --card-bg: #1e1e2e;
+            --text-main: #f1f5f9;
+            --text-dim: #94a3b8;
+            --heading-color: #ffffff;
+            --border-color: rgba(255,255,255,0.1);
+            --nav-bg: rgba(15, 23, 42, 0.9);
+            --section-dark-bg: #090f1e;
+            --inline-code-bg: #334155;
+            --inline-code-text: #f8fafc;
+        }
+
+        /* --- Custom Scrollbar --- */
+        ::-webkit-scrollbar { width: 10px; }
+        ::-webkit-scrollbar-track { background: var(--bg-color); }
+        ::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 5px; }
+        ::-webkit-scrollbar-thumb:hover { background: #e03e5c; }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background-color: var(--bg-color); color: var(--text-main);
+            font-family: 'Inter', sans-serif; line-height: 1.6; scroll-behavior: smooth;
+            transition: background-color 0.4s ease, color 0.4s ease;
+        }
+
+        h1, h2, h3, .logo { font-family: 'Space Grotesk', sans-serif; color: var(--heading-color); transition: color 0.4s ease;}
+
+        /* --- Navigation --- */
+        nav {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 20px 5%; position: fixed; width: 100%; top: 0;
+            background: var(--nav-bg); backdrop-filter: blur(10px);
+            z-index: 1000; border-bottom: 1px solid var(--border-color);
+            transition: background 0.4s ease;
+        }
+        .logo { font-size: 1.5rem; font-weight: 700; text-decoration: none; }
+        .logo span { color: var(--primary); }
+        
+        .nav-links { display: flex; align-items: center; }
+        .nav-links a { margin-left: 25px; text-decoration: none; color: var(--text-main); font-weight: 600; transition: 0.3s; font-size: 0.95rem; }
+        .nav-links a:hover { color: var(--primary); }
+
+        .theme-toggle-btn { background: none; border: none; font-size: 1.3rem; margin-left: 25px; cursor: pointer; transition: transform 0.3s; }
+        .theme-toggle-btn:hover { transform: scale(1.1); }
+
+        /* --- Hero Section --- */
+        .hero { height: 100vh; display: flex; align-items: center; justify-content: space-between; padding: 0 5%; margin-top: 50px; }
+        .hero-content { flex: 1; padding-right: 50px; }
+        .tagline { color: var(--primary); font-size: 0.9rem; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 1rem; display: block; }
+        .hero-content h1 { font-size: clamp(3rem, 5vw, 4.5rem); line-height: 1.1; margin-bottom: 1.5rem; }
+        .typing-text {
+            color: var(--primary); display: inline-block; overflow: hidden; white-space: nowrap;
+            border-right: 3px solid var(--primary);
+            animation: typing 3.5s steps(30, end) infinite, blink .75s step-end infinite;
+        }
+        @keyframes typing { 0%, 20% { width: 0; } 40%, 80% { width: 100%; } 100% { width: 0; } }
+        @keyframes blink { from, to { border-color: transparent; } 50% { border-color: var(--primary); } }
+        
+        .hero-content p { color: var(--text-dim); font-size: 1.1rem; max-width: 500px; margin-bottom: 2rem; }
+        .btn { background-color: var(--primary); color: #fff; padding: 12px 30px; border-radius: 8px; text-decoration: none; font-weight: 600; display: inline-block; transition: 0.3s ease; border: none; cursor: pointer; }
+        .btn:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(255, 77, 109, 0.3); }
+
+        .hero-image { flex: 1; display: flex; justify-content: center; position: relative; }
+        .blob-frame {
+            width: 400px; height: 400px; background: linear-gradient(45deg, #fce4ec, #ffebee);
+            border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+            animation: morphing 8s ease-in-out infinite; overflow: hidden; display: flex; align-items: center; justify-content: center; box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+        }
+        @keyframes morphing { 0% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; } 50% { border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%; } 100% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; } }
+        .blob-frame img { width: 100%; height: 100%; object-fit: cover; }
+
+        /* --- Tech Stack Marquee --- */
+        .marquee-section { background-color: var(--section-dark-bg); color: #fff; padding: 40px 0; overflow: hidden; white-space: nowrap; position: relative; display: flex; align-items: center; transition: 0.4s ease;}
+        .marquee-content { display: flex; gap: 60px; animation: scroll-left 30s linear infinite; }
+        .marquee-section::before, .marquee-section::after { content: ''; position: absolute; top: 0; width: 100px; height: 100%; z-index: 2; }
+        .marquee-section::before { left: 0; background: linear-gradient(to right, var(--section-dark-bg), transparent); }
+        .marquee-section::after { right: 0; background: linear-gradient(to left, var(--section-dark-bg), transparent); }
+        .tech-item { display: flex; align-items: center; gap: 12px; font-size: 1.5rem; font-weight: 700; font-family: 'Space Grotesk', sans-serif; color: rgba(255, 255, 255, 0.7); transition: 0.3s ease; }
+        .tech-item i { font-size: 2.2rem; }
+        .tech-item:hover { color: #fff; transform: scale(1.05); }
+        @keyframes scroll-left { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+        /* --- Featured Projects (2-Column Compact Grid) --- */
+        .projects { padding: 100px 5%; }
+        .section-header { text-align: center; margin-bottom: 60px; }
+        .section-header h2 { font-size: 2.5rem; }
+        .section-header p { color: var(--text-dim); margin-top: 10px; font-size: 1.1rem; }
+        
+        .bento-grid { 
+            display: grid; 
+            grid-template-columns: repeat(2, 1fr); 
+            gap: 24px; 
+            max-width: 1000px; 
+            margin: 0 auto; 
+        }
+        .bento-card { 
+            background: var(--card-bg); 
+            border-radius: 20px; 
+            padding: 20px; 
+            transition: 0.4s ease; 
+            display: flex; 
+            flex-direction: column; 
+            border: 1px solid var(--border-color); 
+        }
+        .bento-card:hover { transform: translateY(-5px); box-shadow: 0 20px 40px rgba(0,0,0,0.1); border-color: var(--primary); }
+        .bento-card iframe { width: 100%; border-radius: 12px; aspect-ratio: 16/9; border: none; margin-bottom: 12px; }
+        .bento-card h3 { font-size: 1.1rem; margin-bottom: 5px; }
+        .bento-card p { color: var(--text-dim); font-size: 0.9rem; margin-bottom: 12px; }
+
+        /* Scrollable Video Code Box */
+        .video-code-box {
+            background: #1e1e1e; border-radius: 8px; padding: 35px 12px 12px 12px;
+            overflow-x: auto; overflow-y: auto; max-height: 160px;
+            position: relative; margin-top: auto; border-left: 3px solid var(--primary);
+        }
+        .video-code-box code { font-family: 'Fira Code', monospace; font-size: 0.8rem; color: #d4d4d4; line-height: 1.4; }
+        .video-copy-btn {
+            position: absolute; top: 6px; right: 6px; background: rgba(255, 255, 255, 0.1); color: #d4d4d4;
+            border: none; padding: 3px 8px; border-radius: 4px; font-family: 'Inter', sans-serif; font-size: 0.7rem;
+            cursor: pointer; transition: 0.3s;
+        }
+        .video-copy-btn:hover { background: rgba(255, 255, 255, 0.2); color: #fff; }
+
+        /* --- HTML Cheat Sheet & Complete Guide Section --- */
+        .cheat-sheet { padding: 100px 5%; }
+        .cheat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px; max-width: 1200px; margin: 0 auto; }
+        .cheat-card {
+            background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 16px; 
+            padding: 25px; box-shadow: 0 10px 30px rgba(0,0,0,0.03); transition: 0.3s;
+            display: flex; flex-direction: column; justify-content: space-between;
+        }
+        .cheat-card:hover { box-shadow: 0 15px 40px rgba(0,0,0,0.08); border-color: rgba(255, 77, 109, 0.3); }
+        .cheat-card h3 { color: var(--primary); font-size: 1.3rem; margin-bottom: 8px; }
+        .cheat-card p.explain { font-size: 0.95rem; color: var(--text-dim); margin-bottom: 15px; }
+        .tag-list { list-style: none; margin-bottom: 15px;}
+        .tag-list li { margin-bottom: 12px; display: flex; flex-direction: column; }
+        .tag-list code { 
+            background: var(--inline-code-bg); color: var(--inline-code-text); padding: 4px 8px; border-radius: 6px; 
+            font-family: 'Fira Code', monospace; font-size: 0.9rem; width: fit-content; margin-bottom: 4px; border: 1px solid var(--border-color);
+        }
+        .tag-list span { font-size: 0.9rem; color: var(--text-dim); }
+
+        .example-code {
+            background: #1e1e1e; border-radius: 8px; padding: 40px 15px 15px 15px; 
+            overflow-x: auto; overflow-y: auto; max-height: 180px; border-left: 4px solid var(--primary); margin-top: auto; position: relative;
+        }
+        .example-code code { font-family: 'Fira Code', monospace; font-size: 0.85rem; color: #d4d4d4; line-height: 1.5; }
+        .copy-mini-btn {
+            position: absolute; top: 8px; right: 8px; background: rgba(255, 255, 255, 0.1); color: #d4d4d4;
+            border: none; padding: 4px 10px; border-radius: 4px; font-family: 'Inter', sans-serif; font-size: 0.75rem;
+            cursor: pointer; transition: 0.3s;
+        }
+        .copy-mini-btn:hover { background: rgba(255, 255, 255, 0.2); color: #fff; }
+
+        .html-tag { color: #569cd6; } .html-attr { color: #9cdcfe; } .html-val { color: #ce9178; } .comment { color: #6a9955; }
+
+        /* --- FAQ Section --- */
+        .faq-section { padding: 80px 5%; max-width: 800px; margin: 0 auto; background-color: var(--card-bg); border-radius: 30px; margin-bottom: 100px; transition: 0.4s ease;}
+        details { background: var(--bg-color); border: 1px solid var(--border-color); border-radius: 12px; margin-bottom: 15px; overflow: hidden; transition: 0.3s ease; }
+        details:hover { box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
+        summary { padding: 20px; font-size: 1.1rem; font-weight: 600; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; }
+        summary::-webkit-details-marker { display: none; }
+        summary::after { content: '+'; font-size: 1.5rem; color: var(--primary); transition: 0.3s ease; }
+        details[open] summary::after { content: '-'; transform: rotate(180deg); }
+        .faq-answer { padding: 0 20px 20px 20px; color: var(--text-dim); font-size: 1rem; line-height: 1.6; }
+
+        /* --- Reviews Section --- */
+        .reviews-section { padding: 80px 5%; }
+        .reviews-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; max-width: 1200px; margin: 0 auto 60px auto; }
+        .review-card { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 20px; padding: 30px; display: flex; flex-direction: column; justify-content: space-between; }
+        .stars { color: var(--star-color); font-size: 1.2rem; margin-bottom: 15px; letter-spacing: 2px; }
+        .review-text { font-style: italic; margin-bottom: 20px; font-size: 1.05rem; }
+        .reviewer { font-weight: 600; font-family: 'Space Grotesk', sans-serif; }
+        
+        .review-form-container { max-width: 600px; margin: 0 auto; background: var(--card-bg); border: 1px solid var(--border-color); padding: 40px; border-radius: 20px; box-shadow: 0 20px 40px rgba(0,0,0,0.05); text-align: center; }
+        .review-form-container h3 { font-size: 1.8rem; margin-bottom: 10px; }
+        .review-form-container p { color: var(--text-dim); margin-bottom: 25px; }
+        .review-form { display: flex; flex-direction: column; gap: 15px; }
+        .review-form input, .review-form select, .review-form textarea { width: 100%; padding: 15px; border: 1px solid var(--border-color); border-radius: 8px; font-family: 'Inter', sans-serif; font-size: 1rem; background: var(--bg-color); color: var(--text-main); outline: none; transition: 0.3s; }
+        .review-form input:focus, .review-form select:focus, .review-form textarea:focus { border-color: var(--primary); box-shadow: 0 0 0 3px rgba(255, 77, 109, 0.2); }
+        .review-form textarea { resize: vertical; min-height: 120px; }
+
+        /* --- Community Section --- */
+        .community { padding: 80px 5%; max-width: 1000px; margin: 0 auto 80px auto; background: var(--section-dark-bg); border-radius: 30px; text-align: center; color: #fff; box-shadow: 0 20px 40px rgba(0,0,0,0.1); transition: 0.4s ease;}
+        .community h2 { font-size: 3rem; margin-bottom: 1rem; color: #fff;}
+        .community p { color: #94a3b8; margin-bottom: 2rem; font-size: 1.1rem; }
+
+        /* --- Floating Scroll to Top Button --- */
+        #scrollTopBtn {
+            display: none; position: fixed; bottom: 30px; right: 30px; z-index: 99;
+            font-size: 1.2rem; border: none; outline: none; background-color: var(--primary); color: white;
+            cursor: pointer; padding: 15px 18px; border-radius: 50%;
+            box-shadow: 0 10px 20px rgba(255, 77, 109, 0.4); transition: 0.3s;
+        }
+        #scrollTopBtn:hover { background-color: #e03e5c; transform: translateY(-5px); }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .hero { flex-direction: column; text-align: center; height: auto; padding-top: 120px; }
+            .hero-content { padding-right: 0; margin-bottom: 50px; }
+            .bento-grid { grid-template-columns: 1fr; }
+            .nav-links a { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Scroll to Top Button -->
+    <button onclick="scrollToTop()" id="scrollTopBtn" title="Go to top">&#8593;</button>
+
+    <!-- Navigation -->
+    <nav>
+        <a href="#" class="logo">web<span>design12_04</span></a>
+        <div class="nav-links">
+            <a href="#work">Work</a>
+            <a href="#cheatsheet">HTML Guide</a>
+            <a href="#faq">FAQs</a>
+            <a href="#reviews">Reviews</a>
+            <button id="themeToggle" class="theme-toggle-btn" title="Toggle Dark/Light Mode">🌙</button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="intro">
+        <div class="hero-content">
+            <span class="tagline">Engineering the Future</span>
+            <h1>HI, I AM A <br> <span class="typing-text">WEB DEVELOPER</span></h1>
+            <p>I build robust, scalable web applications with a focus on modern user experiences and clean, efficient code.</p>
+            <a href="#community" class="btn">Join Community</a>
+        </div>
+        
+        <div class="hero-image">
+            <div class="blob-frame">
+                <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Developer Profile">
+            </div>
+        </div>
+    </section>
+
+    <!-- Tech Stack Marquee -->
+    <div class="marquee-section">
+        <div class="marquee-content">
+            <span class="tech-item"><i class="devicon-html5-plain colored"></i> HTML5</span>
+            <span class="tech-item"><i class="devicon-css3-plain colored"></i> CSS3</span>
+            <span class="tech-item"><i class="devicon-javascript-plain colored"></i> JavaScript</span>
+            <span class="tech-item"><i class="devicon-react-original colored"></i> React.js</span>
+            <span class="tech-item"><i class="devicon-tailwindcss-original colored"></i> Tailwind CSS</span>
+            <span class="tech-item"><i class="devicon-vscode-plain colored"></i> VS Code</span>
+            <span class="tech-item"><i class="devicon-github-original"></i> GitHub</span>
+            
+            <span class="tech-item"><i class="devicon-html5-plain colored"></i> HTML5</span>
+            <span class="tech-item"><i class="devicon-css3-plain colored"></i> CSS3</span>
+            <span class="tech-item"><i class="devicon-javascript-plain colored"></i> JavaScript</span>
+            <span class="tech-item"><i class="devicon-react-original colored"></i> React.js</span>
+            <span class="tech-item"><i class="devicon-tailwindcss-original colored"></i> Tailwind CSS</span>
+            <span class="tech-item"><i class="devicon-vscode-plain colored"></i> VS Code</span>
+            <span class="tech-item"><i class="devicon-github-original"></i> GitHub</span>
+        </div>
+    </div>
+
+    <!-- Featured Projects (2-Column Layout) -->
+    <section class="projects" id="work">
+        <div class="section-header">
+            <h2>Featured Projects</h2>
+            <p>Watch tutorials and copy the project code directly below each video.</p>
+        </div>
+        
+        <div class="bento-grid">
+            <!-- Project 1 -->
+            <div class="bento-card">
+                <iframe src="https://www.youtube.com/embed/3pSBgE0y1mU" allowfullscreen></iframe>
+                <h3>Modern Portfolio</h3>
+                <p>Learn how to design a modern web portfolio.</p>
+                <div class="video-code-box">
+    <button class="video-copy-btn" onclick="copySnippet(this)">Copy</button>
+<pre><code><span class="html-tag">&lt;!DOCTYPE html&gt;</span>
+<span class="html-tag">&lt;html</span> <span class="html-attr">lang</span>=<span class="html-val">"en"</span><span class="html-tag">&gt;</span>
+<span class="html-tag">&lt;head&gt;</span>
+    <span class="html-tag">&lt;meta</span> <span class="html-attr">charset</span>=<span class="html-val">"UTF-8"</span><span class="html-tag">&gt;</span>
+    <span class="html-tag">&lt;meta</span> <span class="html-attr">name</span>=<span class="html-val">"viewport"</span> <span class="html-attr">content</span>=<span class="html-val">"width=device-width, initial-scale=1.0"</span><span class="html-tag">&gt;</span>
+    <span class="html-tag">&lt;title&gt;</span>Pro Website | Animations &amp; Gallery<span class="html-tag">&lt;/title&gt;</span>
+    
+    <span class="html-tag">&lt;style&gt;</span>
+        :root {
+            --bg-color: #f8fafc;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --card-bg: #ffffff;
+            --header-bg: rgba(255, 255, 255, 0.95);
+            --primary: #6366f1;
+            --primary-hover: #4f46e5;
+            --border-color: #e2e8f0;
+        }
+
+        body.dark-mode {
+            --bg-color: #0f172a;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --card-bg: #1e293b;
+            --header-bg: rgba(30, 41, 59, 0.95);
+            --border-color: #334155;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            overflow-x: hidden;
+        }
+
+        header {
+            background: var(--header-bg);
+            backdrop-filter: blur(10px);
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            transition: background-color 0.3s ease;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .nav-controls {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text-main);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--primary);
+        }
+
+        .btn {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 0.8rem 2rem;
+            border: none;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.2s;
+        }
+
+        .btn:hover {
+            background: var(--primary-hover);
+            transform: translateY(-2px);
+        }
+
+        .icon-btn {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-main);
+            padding: 0.5rem;
+        }
+
+        .menu-btn { display: none; }
+
+        .hero {
+            padding: 8rem 5%;
+            text-align: center;
+            min-height: 80vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            color: var(--text-muted);
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto 2.5rem;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            font-size: 2.2rem;
+        }
+
+        section {
+            padding: 6rem 5%;
+            border-top: 1px solid var(--border-color);
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+
+        .services .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .card {
+            background: var(--card-bg);
+            padding: 2.5rem 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            text-align: center;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        .card h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .portfolio {
+            background: var(--card-bg);
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            aspect-ratio: 4/3;
+            cursor: pointer;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.8));
+            color: white;
+            padding: 2rem 1.5rem 1.5rem;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            transform: translateY(0);
+        }
+
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .input-group input, 
+        .input-group textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            background: var(--bg-color);
+            color: var(--text-main);
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+
+        .input-group input:focus, 
+        .input-group textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
+        }
+
+        footer {
+            background: var(--header-bg);
+            color: var(--text-main);
+            text-align: center;
+            padding: 3rem 5%;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .fade-in.appear {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media (max-width: 768px) {
+            .menu-btn { display: block; }
+            nav ul {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: var(--header-bg);
+                border-top: 1px solid var(--border-color);
+                padding: 1rem 0;
+            }
+            nav ul.active { display: flex; }
+            nav ul li { text-align: center; padding: 1rem 0; }
+            .hero h1 { font-size: 2.5rem; }
+        }
+    <span class="html-tag">&lt;/style&gt;</span>
+<span class="html-tag">&lt;/head&gt;</span>
+<span class="html-tag">&lt;body&gt;</span>
+
+    <span class="html-tag">&lt;header&gt;</span>
+        <span class="html-tag">&lt;a</span> <span class="html-attr">href</span>=<span class="html-val">"#"</span> <span class="html-attr">class</span>=<span class="html-val">"logo"</span><span class="html-tag">&gt;</span>NextGen.<span class="html-tag">&lt;/a&gt;</span>
+        <span class="html-tag">&lt;div</span> <span class="html-attr">class</span>=<span class="html-val">"nav-controls"</span><span class="html-tag">&gt;</span>
+            <span class="html-tag">&lt;nav&gt;</span>
+                <span class="html-tag">&lt;ul</span> <span class="html-attr">id</span>=<span class="html-val">"navLinks"</span><span class="html-tag">&gt;</span>
+                    <span class="html-tag">&lt;li&gt;&lt;a</span> <span class="html-attr">href</span>=<span class="html-val">"#home"</span><span class="html-tag">&gt;</span>Home<span class="html-tag">&lt;/a&gt;&lt;/li&gt;</span>
+                    <span class="html-tag">&lt;li&gt;&lt;a</span> <span class="html-attr">href</span>=<span class="html-val">"#services"</span><span class="html-tag">&gt;</span>Services<span class="html-tag">&lt;/a&gt;&lt;/li&gt;</span>
+                    <span class="html-tag">&lt;li&gt;&lt;a</span> <span class="html-attr">href</span>=<span class="html-val">"#portfolio"</span><span class="html-tag">&gt;</span>Portfolio<span class="html-tag">&lt;/a&gt;&lt;/li&gt;</span>
+                    <span class="html-tag">&lt;li&gt;&lt;a</span> <span class="html-attr">href</span>=<span class="html-val">"#contact"</span><span class="html-tag">&gt;</span>Contact<span class="html-tag">&lt;/a&gt;&lt;/li&gt;</span>
+                <span class="html-tag">&lt;/ul&gt;</span>
+            <span class="html-tag">&lt;/nav&gt;</span>
+            <span class="html-tag">&lt;button</span> <span class="html-attr">class</span>=<span class="html-val">"icon-btn"</span> <span class="html-attr">id</span>=<span class="html-val">"themeToggle"</span> <span class="html-attr">title</span>=<span class="html-val">"Toggle Dark Mode"</span><span class="html-tag">&gt;</span>🌙<span class="html-tag">&lt;/button&gt;</span>
+            <span class="html-tag">&lt;button</span> <span class="html-attr">class</span>=<span class="html-val">"icon-btn menu-btn"</span> <span class="html-attr">id</span>=<span class="html-val">"menuBtn"</span><span class="html-tag">&gt;</span>☰<span class="html-tag">&lt;/button&gt;</span>
+        <span class="html-tag">&lt;/div&gt;</span>
+    <span class="html-tag">&lt;/header&gt;</span>
+
+    <span class="html-tag">&lt;section</span> <span class="html-attr">id</span>=<span class="html-val">"home"</span> <span class="html-attr">class</span>=<span class="html-val">"hero fade-in"</span><span class="html-tag">&gt;</span>
+        <span class="html-tag">&lt;h1&gt;</span>Welcome to the Next Level<span class="html-tag">&lt;/h1&gt;</span>
+        <span class="html-tag">&lt;p&gt;</span>This version includes smooth scroll animations, a beautiful hover-effect image gallery, and a frosted glass navigation bar.<span class="html-tag">&lt;/p&gt;</span>
+        <span class="html-tag">&lt;a</span> <span class="html-attr">href</span>=<span class="html-val">"#portfolio"</span> <span class="html-attr">class</span>=<span class="html-val">"btn"</span><span class="html-tag">&gt;</span>View My Work<span class="html-tag">&lt;/a&gt;</span>
+    <span class="html-tag">&lt;/section&gt;</span>
+
+    <span class="html-tag">&lt;section</span> <span class="html-attr">id</span>=<span class="html-val">"services"</span> <span class="html-attr">class</span>=<span class="html-val">"services"</span><span class="html-tag">&gt;</span>
+        <span class="html-tag">&lt;h2</span> <span class="html-attr">class</span>=<span class="html-val">"section-title fade-in"</span><span class="html-tag">&gt;</span>What's New<span class="html-tag">&lt;/h2&gt;</span>
+        <span class="html-tag">&lt;div</span> <span class="html-attr">class</span>=<span class="html-val">"grid"</span><span class="html-tag">&gt;</span>
+            <span class="html-tag">&lt;div</span> <span class="html-attr">class</span>=<span class="html-val">"card fade-in"</span><span class="html-tag">&gt;</span>
+                <span class="html-tag">&lt;h3&gt;</span>Scroll Animations<span class="html-tag">&lt;/h3&gt;</span>
+                <span class="html-tag">&lt;p&gt;</span>Using JavaScript Intersection Observers, elements fade in and slide up as they enter your screen.<span class="html-tag">&lt;/p&gt;</span>
+            <span class="html-tag">&lt;/div&gt;</span>
+            <span class="html-tag">&lt;div</span> <span class="html-attr">class</span>=<span class="html-val">"card fade-in"</span> <span class="html-attr">style</span>=<span class="html-val">"transition-delay: 150ms;"</span><span class="html-tag">&gt;</span>
+                <span class="html-tag">&lt;h3&gt;</span>Image Gallery<span class="html-tag">&lt;/h3&gt;</span>
+                <span class="html-tag">&lt;p&gt;</span>A responsive CSS Grid gallery with sleek hover overlays that slide up to reveal captions.<span class="html-tag">&lt;/p&gt;</span>
+            <span class="html-tag">&lt;/div&gt;</span>
+            <span class="html-tag">&lt;div</span> <span class="html-attr">class</span>=<span class="html-val">"card fade-in"</span> <span class="html-attr">style</span>=<span class="html-val">"transition-delay: 300ms;"</span><span class="html-tag">&gt;</span>
+                <span class="html-tag">&lt;h3&gt;</span>Smooth Scrolling<span class="html-tag">&lt;/h3&gt;</span>
+                <span class="html-tag">&lt;p&gt;</span>Clicking any link in the navigation bar will now smoothly glide you down to that specific section.<span class="html-tag">&lt;/p&gt;</span>
+            <span class="html-tag">&lt;/div&gt;</span>
+        <span class="html-tag">&lt;/div&gt;</span>
+    <span class="html-tag">&lt;/section&gt;</span>
+
+    <span class="html-tag">&lt;section</span> <span class="html-attr">id</span>=<span class="html-val">"portfolio"</span> <span class="html-attr">class</span>=<span class="html-val">"portfolio"</span><span class="html-tag">&gt;</span>
+        <span class="html-tag">&lt;h2</span> <span class="html-attr">class</span>=<span class="html-val">"section-title fade-in"</span><span class="html-tag">&gt;</span>Recent Work<span class="html-tag">&lt;/h2&gt;</span>
+        <span class="html-tag">&lt;div</span> <span class="html-attr">class</span>=<span class="html-val">"gallery-grid"</span><span class="html-tag">&gt;</span>
+            <span class="html-tag">&lt;div</span> <span class="html-attr">class</span>=<span class="html-val">"gallery-item fade-in"</span><span class="html-tag">&gt;</span>
+                <span class="html-tag">&lt;img</span> <span class="html-attr">src</span>=<span class="html-val">"https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&amp;fit=crop&amp;w=600&amp;q=80"</span> <span class="html-attr">alt</span>=<span class="html-val">"Web Design"</span><span class="html-tag">&gt;</span>
+                <span class="html-tag">&lt;div</span> <span class="html-attr">class</span>=<span class="html-val">"gallery-overlay"</span><span class="html-tag">&gt;</span>
+                    <span class="html-tag">&lt;h3&gt;</span>Web Development<span class="html-tag">&lt;/h3&gt;</span>
+                    <span class="html-tag">&lt;p&gt;</span>Clean, modern coding.<span class="html-tag">&lt;/p&gt;</span>
+                <span class="html-tag">&lt;/div&gt;</span>
+            <span class="html-tag">&lt;/div&gt;</span>
+            <span class="html-tag">&lt;div</span> <span class="html-attr">class</span>=<span class="html-val">"gallery-item fade-in"</span> <span class="html-attr">style</span>=<span class="html-val">"transition-delay: 150ms;"</span><span class="html-tag">&gt;</span>
+                <span class="html-tag">&lt;img</span> <span class="html-attr">src</span>=<span class="html-val">"https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&amp;fit=crop&amp;w=600&amp;q=80"</span> <span class="html-attr">alt</span>=<span class="html-val">"App Design"</span><span class="html-tag">&gt;</span>
+                <span class="html-tag">&lt;div</span> <span class="html-attr">class</span>=<span class="html-val">"gallery-overlay"</span><span class="html-tag">&gt;</span>
+                    <span class="html-tag">&lt;h3&gt;</span>App Design<span class="html-tag">&lt;/h3&gt;</span>
+                    <span class="html-tag">&lt;p&gt;</span>Intuitive user interfaces.<span class="html-tag">&lt;/p&gt;</span>
+                <span class="html-tag">&lt;/div&gt;</span>
+            <span class="html-tag">&lt;/div&gt;</span>
+            <span class="html-tag">&lt;div</span> <span class="html-attr">class</span>=<span class="html-val">"gallery-item fade-in"</span> <span class="html-attr">style</span>=<span class="html-val">"transition-delay: 300ms;"</span><span class="html-tag">&gt;</span>
+                <span class="html-tag">&lt;img</span> <span class="html-attr">src</span>=<span class="html-val">"https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&amp;fit=crop&amp;w=600&amp;q=80"</span> <span class="html-attr">alt</span>=<span class="html-val">"Branding"</span><span class="html-tag">&gt;</span>
+                <span class="html-tag">&lt;div</span> <span class="html-attr">class</span>=<span class="html-val">"gallery-overlay"</span><span class="html-tag">&gt;</span>
+                    <span class="html-tag">&lt;h3&gt;</span>Brand Strategy<span class="html-tag">&lt;/h3&gt;</span>
+                    <span class="html-tag">&lt;p&gt;</span>Memorable visual identities.<span class="html-tag">&lt;/p&gt;</span>
+                <span class="html-tag">&lt;/div&gt;</span>
+            <span class="html-tag">&lt;/div&gt;</span>
+        <span class="html-tag">&lt;/div&gt;</span>
+    <span class="html-tag">&lt;/section&gt;</span>
+
+    <span class="html-tag">&lt;section</span> <span class="html-attr">id</span>=<span class="html-val">"contact"</span> <span class="html-attr">class</span>=<span class="html-val">"contact-section"</span><span class="html-tag">&gt;</span>
+        <span class="html-tag">&lt;h2</span> <span class="html-attr">class</span>=<span class="html-val">"section-title fade-in"</span><span class="html-tag">&gt;</span>Let's Connect<span class="html-tag">&lt;/h2&gt;</span>
+        <span class="html-tag">&lt;form</span> <span class="html-attr">class</span>=<span class="html-val">"contact-form fade-in"</span> <span class="html-attr">onsubmit</span>=<span class="html-val">"event.preventDefault(); alert('Message sent!');"</span><span class="html-tag">&gt;</span>
+            <span class="html-tag">&lt;div</span> <span class="html-attr">class</span>=<span class="html-val">"input-group"</span><span class="html-tag">&gt;</span>
+                <span class="html-tag">&lt;input</span> <span class="html-attr">type</span>=<span class="html-val">"text"</span> <span class="html-attr">placeholder</span>=<span class="html-val">"Your Name"</span> <span class="html-attr">required</span><span class="html-tag">&gt;</span>
+            <span class="html-tag">&lt;/div&gt;</span>
+            <span class="html-tag">&lt;div</span> <span class="html-attr">class</span>=<span class="html-val">"input-group"</span><span class="html-tag">&gt;</span>
+                <span class="html-tag">&lt;input</span> <span class="html-attr">type</span>=<span class="html-val">"email"</span> <span class="html-attr">placeholder</span>=<span class="html-val">"Your Email Address"</span> <span class="html-attr">required</span><span class="html-tag">&gt;</span>
+            <span class="html-tag">&lt;/div&gt;</span>
+            <span class="html-tag">&lt;div</span> <span class="html-attr">class</span>=<span class="html-val">"input-group"</span><span class="html-tag">&gt;</span>
+                <span class="html-tag">&lt;textarea</span> <span class="html-attr">placeholder</span>=<span class="html-val">"How can we help you?"</span> <span class="html-attr">rows</span>=<span class="html-val">"5"</span> <span class="html-attr">required</span><span class="html-tag">&gt;&lt;/textarea&gt;</span>
+            <span class="html-tag">&lt;/div&gt;</span>
+            <span class="html-tag">&lt;button</span> <span class="html-attr">type</span>=<span class="html-val">"submit"</span> <span class="html-attr">class</span>=<span class="html-val">"btn"</span><span class="html-tag">&gt;</span>Send Message<span class="html-tag">&lt;/button&gt;</span>
+        <span class="html-tag">&lt;/form&gt;</span>
+    <span class="html-tag">&lt;/section&gt;</span>
+
+    <span class="html-tag">&lt;footer&gt;</span>
+        <span class="html-tag">&lt;p&gt;</span>&amp;copy; 2026 NextGen Studio. All rights reserved.<span class="html-tag">&lt;/p&gt;</span>
+    <span class="html-tag">&lt;/footer&gt;</span>
+
+    <span class="html-tag">&lt;script&gt;</span>
+        const menuBtn = document.getElementById('menuBtn');
+        const navLinks = document.getElementById('navLinks');
+        menuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            menuBtn.innerHTML = navLinks.classList.contains('active') ? '✕' : '☰';
+        });
+
+        document.querySelectorAll('#navLinks a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                menuBtn.innerHTML = '☰';
+            });
+        });
+
+        const themeToggle = document.getElementById('themeToggle');
+        themeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+            themeToggle.innerHTML = document.body.classList.contains('dark-mode') ? '☀️' : '🌙';
+        });
+
+        const observerOptions = {
+            threshold: 0.2,
+            rootMargin: "0px 0px -50px 0px"
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('appear');
+                    observer.unobserve(entry.target); 
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(element => {
+            observer.observe(element);
+        });
+    <span class="html-tag">&lt;/script&gt;</span>
+<span class="html-tag">&lt;/body&gt;</span>
+<span class="html-tag">&lt;/html&gt;</span></code></pre>
+</div>
+
+            <!-- Project 2 -->
+            <div class="bento-card">
+                <iframe src="https://www.youtube.com/embed/j4L4trZXORI" allowfullscreen></iframe>
+                <h3>Rotating Tunnel Illusion</h3>
+                <p>Step-by-step tutorial guide.</p>
+                <div class="video-code-box">
+    <button class="video-copy-btn" onclick="copySnippet(this)">Copy</button>
+<pre><code><span class="html-tag">&lt;!DOCTYPE html&gt;</span>
+<span class="html-tag">&lt;html</span> <span class="html-attr">lang</span>=<span class="html-val">"en"</span><span class="html-tag">&gt;</span>
+<span class="html-tag">&lt;head&gt;</span>
+<span class="html-tag">&lt;meta</span> <span class="html-attr">charset</span>=<span class="html-val">"UTF-8"</span><span class="html-tag">&gt;</span>
+<span class="html-tag">&lt;meta</span> <span class="html-attr">name</span>=<span class="html-val">"viewport"</span> <span class="html-attr">content</span>=<span class="html-val">"width=device-width, initial-scale=1.0"</span><span class="html-tag">&gt;</span>
+<span class="html-tag">&lt;title&gt;</span>Rotating Tunnel Illusion<span class="html-tag">&lt;/title&gt;</span>
+<span class="html-tag">&lt;style&gt;</span>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { width: 100vw; height: 100vh; overflow: hidden; background-color: #2b2b2b; display: flex; justify-content: center; align-items: center; }
+    canvas { display: block; }
+<span class="html-tag">&lt;/style&gt;</span>
+<span class="html-tag">&lt;/head&gt;</span>
+<span class="html-tag">&lt;body&gt;</span>
+<span class="html-tag">&lt;canvas</span> <span class="html-attr">id</span>=<span class="html-val">"illusionCanvas"</span><span class="html-tag">&gt;&lt;/canvas&gt;</span>
+<span class="html-tag">&lt;script&gt;</span>
+    const canvas = document.getElementById('illusionCanvas');
+    const ctx = canvas.getContext('2d');
+    let width, height;
+    function resize() {
+        width = canvas.width = window.innerWidth;
+        height = canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resize);
+    resize();
+    const numSquares = 14;
+    let time = 0;
+    function draw() {
+        ctx.clearRect(0, 0, width, height);
+        const centerX = width / 2;
+        const centerY = height / 2;
+        const maxRadius = Math.min(width, height) * 0.4;
+        for (let i = 0; i &lt; numSquares; i++) {
+            const scale = 1 - (i / numSquares) * 0.75;
+            const size = maxRadius * scale * 2;
+            const rotation = Math.sin(time - (i * 0.2)) * (Math.PI / 3);
+            const hue = 330 - (i / numSquares) * 300;
+            const color = `hsl(${hue}, 100%, 65%)`;
+            ctx.save();
+            ctx.translate(centerX, centerY);
+            ctx.rotate(rotation);
+            ctx.strokeStyle = color;
+            ctx.lineWidth = 1.5;
+            ctx.setLineDash([2, 4]);
+            ctx.beginPath();
+            ctx.rect(-size / 2, -size / 2, size, size);
+            ctx.stroke();
+            ctx.setLineDash([]);
+            const dotRadius = 4.5;
+            const corners = [
+                { x: -size / 2, y: -size / 2 },
+                { x: size / 2, y: -size / 2 },
+                { x: size / 2, y: size / 2 },
+                { x: -size / 2, y: size / 2 }
+            ];
+            corners.forEach(corner =&gt; {
+                ctx.fillStyle = color;
+                ctx.beginPath();
+                ctx.arc(corner.x, corner.y, dotRadius, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.fillStyle = '#ffffff';
+                ctx.beginPath();
+                ctx.arc(corner.x, corner.y, dotRadius * 0.3, 0, Math.PI * 2);
+                ctx.fill();
+            });
+            ctx.restore();
+        }
+        time += 0.015;
+        requestAnimationFrame(draw);
+    }
+    draw();
+<span class="html-tag">&lt;/script&gt;</span>
+<span class="html-tag">&lt;/body&gt;</span>
+<span class="html-tag">&lt;/html&gt;</span></code></pre>
+</div>
+
+            <!-- Project 3 -->
+            <div class="bento-card">
+                <iframe src="https://www.youtube.com/embed/7gFTkK-a5KA?" allowfullscreen></iframe>
+                <h3>Neon Breathing Cube</h3>
+                <p>Create a 3D Cube Animation</p>
+               <div class="video-code-box">
+    <button class="video-copy-btn" onclick="copySnippet(this)">Copy</button>
+<pre><code><span class="html-tag">&lt;!DOCTYPE html&gt;</span>
+<span class="html-tag">&lt;html</span> <span class="html-attr">lang</span>=<span class="html-val">"en"</span><span class="html-tag">&gt;</span>
+<span class="html-tag">&lt;head&gt;</span>
+<span class="html-tag">&lt;meta</span> <span class="html-attr">charset</span>=<span class="html-val">"UTF-8"</span><span class="html-tag">&gt;</span>
+<span class="html-tag">&lt;meta</span> <span class="html-attr">name</span>=<span class="html-val">"viewport"</span> <span class="html-attr">content</span>=<span class="html-val">"width=device-width, initial-scale=1.0"</span><span class="html-tag">&gt;</span>
+<span class="html-tag">&lt;title&gt;</span>Neon Breathing Cube<span class="html-tag">&lt;/title&gt;</span>
+<span class="html-tag">&lt;style&gt;</span>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      background-color: #050505;
+      background-image: 
+        repeating-linear-gradient(45deg, rgba(255, 255, 255, 0.02) 0, rgba(255, 255, 255, 0.02) 2px, transparent 2px, transparent 4px),
+        repeating-linear-gradient(-45deg, rgba(255, 255, 255, 0.02) 0, rgba(255, 255, 255, 0.02) 2px, transparent 2px, transparent 4px);
+      perspective: 1200px;
+    }
+    .scene {
+      position: relative;
+      width: 150px;
+      height: 150px;
+      transform-style: preserve-3d;
+      animation: globalSpin 12s infinite linear;
+    }
+    @keyframes globalSpin {
+      0% { transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg); }
+      100% { transform: rotateX(360deg) rotateY(720deg) rotateZ(180deg); }
+    }
+    .face {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 150px;
+      height: 150px;
+      border: 4px solid transparent;
+      border-image: linear-gradient(45deg, #00ffff, #ff00ff, #ffff00) 1;
+      filter: drop-shadow(0 0 8px rgba(0, 255, 255, 0.8)) drop-shadow(0 0 15px rgba(255, 0, 255, 0.6));
+      transform-style: preserve-3d;
+    }
+    .front  { animation: splitFront 4s infinite ease-in-out; }
+    .back   { animation: splitBack 4s infinite ease-in-out; }
+    .right  { animation: splitRight 4s infinite ease-in-out; }
+    .left   { animation: splitLeft 4s infinite ease-in-out; }
+    .top    { animation: splitTop 4s infinite ease-in-out; }
+    .bottom { animation: splitBottom 4s infinite ease-in-out; }
+    @keyframes splitFront {
+      0%, 100% { transform: rotateY(0deg) translateZ(75px) rotateZ(0deg); }
+      50%      { transform: rotateY(0deg) translateZ(220px) rotateZ(90deg); }
+    }
+    @keyframes splitBack {
+      0%, 100% { transform: rotateY(180deg) translateZ(75px) rotateZ(0deg); }
+      50%      { transform: rotateY(180deg) translateZ(220px) rotateZ(90deg); }
+    }
+    @keyframes splitRight {
+      0%, 100% { transform: rotateY(90deg) translateZ(75px) rotateZ(0deg); }
+      50%      { transform: rotateY(90deg) translateZ(220px) rotateZ(90deg); }
+    }
+    @keyframes splitLeft {
+      0%, 100% { transform: rotateY(-90deg) translateZ(75px) rotateZ(0deg); }
+      50%      { transform: rotateY(-90deg) translateZ(220px) rotateZ(90deg); }
+    }
+    @keyframes splitTop {
+      0%, 100% { transform: rotateX(90deg) translateZ(75px) rotateZ(0deg); }
+      50%      { transform: rotateX(90deg) translateZ(220px) rotateZ(90deg); }
+    }
+    @keyframes splitBottom {
+      0%, 100% { transform: rotateX(-90deg) translateZ(75px) rotateZ(0deg); }
+      50%      { transform: rotateX(-90deg) translateZ(220px) rotateZ(90deg); }
+    }
+<span class="html-tag">&lt;/style&gt;</span>
+<span class="html-tag">&lt;/head&gt;</span>
+<span class="html-tag">&lt;body&gt;</span>
+<span class="html-tag">&lt;div</span> <span class="html-attr">class</span>=<span class="html-val">"scene"</span><span class="html-tag">&gt;</span>
+  <span class="html-tag">&lt;div</span> <span class="html-attr">class</span>=<span class="html-val">"face front"</span><span class="html-tag">&gt;&lt;/div&gt;</span>
+  <span class="html-tag">&lt;div</span> <span class="html-attr">class</span>=<span class="html-val">"face back"</span><span class="html-tag">&gt;&lt;/div&gt;</span>
+  <span class="html-tag">&lt;div</span> <span class="html-attr">class</span>=<span class="html-val">"face right"</span><span class="html-tag">&gt;&lt;/div&gt;</span>
+  <span class="html-tag">&lt;div</span> <span class="html-attr">class</span>=<span class="html-val">"face left"</span><span class="html-tag">&gt;&lt;/div&gt;</span>
+  <span class="html-tag">&lt;div</span> <span class="html-attr">class</span>=<span class="html-val">"face top"</span><span class="html-tag">&gt;&lt;/div&gt;</span>
+  <span class="html-tag">&lt;div</span> <span class="html-attr">class</span>=<span class="html-val">"face bottom"</span><span class="html-tag">&gt;&lt;/div&gt;</span>
+<span class="html-tag">&lt;/div&gt;</span>
+<span class="html-tag">&lt;/body&gt;</span>
+<span class="html-tag">&lt;/html&gt;</span></code></pre>
+</div>
+
+            <!-- Project 4 -->
+            <div class="bento-card">
+                <iframe src="https://www.youtube.com/embed/bISLWdkoZRM" allowfullscreen></iframe>
+                <h3>Synthwave Landscape</h3>
+                <p>PURE CSS ANIMATION.</p>
+                <div class="video-code-box">
+    <button class="video-copy-btn" onclick="copySnippet(this)">Copy</button>
+<pre><code><span class="html-tag">&lt;!DOCTYPE html&gt;</span>
+<span class="html-tag">&lt;html</span> <span class="html-attr">lang</span>=<span class="html-val">"en"</span><span class="html-tag">&gt;</span>
+<span class="html-tag">&lt;head&gt;</span>
+<span class="html-tag">&lt;meta</span> <span class="html-attr">charset</span>=<span class="html-val">"UTF-8"</span><span class="html-tag">&gt;</span>
+<span class="html-tag">&lt;meta</span> <span class="html-attr">name</span>=<span class="html-val">"viewport"</span> <span class="html-attr">content</span>=<span class="html-val">"width=device-width, initial-scale=1.0"</span><span class="html-tag">&gt;</span>
+<span class="html-tag">&lt;title&gt;</span>Pure CSS Synthwave Landscape<span class="html-tag">&lt;/title&gt;</span>
+<span class="html-tag">&lt;style&gt;</span>
+    body {
+        margin: 0;
+        height: 100vh;
+        background: #000;
+        overflow: hidden;
+        font-family: system-ui, -apple-system, sans-serif;
+    }
+    .retro-scene {
+        position: relative;
+        width: 100vw;
+        height: 100vh;
+    }
+    .sky {
+        position: absolute;
+        top: 0;
+        width: 100%;
+        height: 55%;
+        background: linear-gradient(to bottom, #00001a, #220033);
+        z-index: 1;
+    }
+    .stars {
+        position: absolute;
+        inset: 0;
+        background: 
+            radial-gradient(1px 1px at 20px 30px, #fff, transparent),
+            radial-gradient(1px 1px at 80px 20px, #fff, transparent),
+            radial-gradient(1.5px 1.5px at 150px 70px, #fff, transparent),
+            radial-gradient(1px 1px at 240px 60px, #fff, transparent),
+            radial-gradient(2px 2px at 300px 10px, #fff, transparent),
+            radial-gradient(1px 1px at 400px 40px, #fff, transparent);
+        background-size: 450px 150px;
+        opacity: 0.6;
+    }
+    .sun {
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 320px;
+        height: 320px;
+        border-radius: 50%;
+        background: linear-gradient(to bottom, #ffc000, #ff0055);
+        box-shadow: 0 0 60px #ff0055, 0 0 100px #ffc000;
+        -webkit-mask-image: repeating-linear-gradient(
+            to bottom,
+            #000 0px,
+            #000 18px,
+            transparent 18px,
+            transparent 24px
+        );
+        mask-image: repeating-linear-gradient(
+            to bottom,
+            #000 0px,
+            #000 18px,
+            transparent 18px,
+            transparent 24px
+        );
+        z-index: 2;
+    }
+    .mountain-glow {
+        position: absolute;
+        bottom: 45%;
+        width: 100%;
+        height: 164px;
+        background: #ff0055;
+        clip-path: polygon(0% 100%, 0% 80%, 20% 55%, 33% 70%, 50% 30%, 67% 70%, 80% 50%, 100% 70%, 100% 100%);
+        filter: blur(8px);
+        z-index: 2;
+    }
+    .mountains {
+        position: absolute;
+        bottom: 45%;
+        width: 100%;
+        height: 160px;
+        background: #000;
+        clip-path: polygon(0% 100%, 0% 80%, 20% 55%, 33% 70%, 50% 30%, 67% 70%, 80% 50%, 100% 70%, 100% 100%);
+        z-index: 3;
+    }
+    .ground {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 45%;
+        background: #000;
+        perspective: 600px;
+        z-index: 4;
+        overflow: hidden;
+    }
+    .grid {
+        position: absolute;
+        top: 0;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background-image: 
+            linear-gradient(rgba(0, 255, 200, 0.8) 2px, transparent 2px),
+            linear-gradient(90deg, rgba(0, 255, 200, 0.8) 2px, transparent 2px);
+        background-size: 50px 50px;
+        transform: rotateX(75deg) translateY(0);
+        transform-origin: top center;
+        animation: grid-move 1s linear infinite;
+    }
+    .grid-fade {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 40%);
+        z-index: 5;
+    }
+    @keyframes grid-move {
+        0% { transform: rotateX(75deg) translateY(0); }
+        100% { transform: rotateX(75deg) translateY(50px); }
+    }
+<span class="html-tag">&lt;/style&gt;</span>
+<span class="html-tag">&lt;/head&gt;</span>
+<span class="html-tag">&lt;body&gt;</span>
+<span class="html-tag">&lt;div</span> <span class="html-attr">class</span>=<span class="html-val">"retro-scene"</span><span class="html-tag">&gt;</span>
+    <span class="html-tag">&lt;div</span> <span class="html-attr">class</span>=<span class="html-val">"sky"</span><span class="html-tag">&gt;</span>
+        <span class="html-tag">&lt;div</span> <span class="html-attr">class</span>=<span class="html-val">"stars"</span><span class="html-tag">&gt;&lt;/div&gt;</span>
+        <span class="html-tag">&lt;div</span> <span class="html-attr">class</span>=<span class="html-val">"sun"</span><span class="html-tag">&gt;&lt;/div&gt;</span>
+    <span class="html-tag">&lt;/div&gt;</span>
+    <span class="html-tag">&lt;div</span> <span class="html-attr">class</span>=<span class="html-val">"mountain-glow"</span><span class="html-tag">&gt;&lt;/div&gt;</span>
+    <span class="html-tag">&lt;div</span> <span class="html-attr">class</span>=<span class="html-val">"mountains"</span><span class="html-tag">&gt;&lt;/div&gt;</span>
+    <span class="html-tag">&lt;div</span> <span class="html-attr">class</span>=<span class="html-val">"ground"</span><span class="html-tag">&gt;</span>
+        <span class="html-tag">&lt;div</span> <span class="html-attr">class</span>=<span class="html-val">"grid"</span><span class="html-tag">&gt;&lt;/div&gt;</span>
+        <span class="html-tag">&lt;div</span> <span class="html-attr">class</span>=<span class="html-val">"grid-fade"</span><span class="html-tag">&gt;&lt;/div&gt;</span>
+    <span class="html-tag">&lt;/div&gt;</span>
+<span class="html-tag">&lt;/div&gt;</span>
+<span class="html-tag">&lt;/body&gt;</span>
+<span class="html-tag">&lt;/html&gt;</span></code></pre>
+</div>
+    </section>
+
+    <!-- HTML Cheat Sheet & Complete Guide Section (Restored) -->
+    <section class="cheat-sheet" id="cheatsheet">
+        <div class="section-header">
+            <h2>HTML Quick Reference & Learning Guide</h2>
+            <p>Comprehensive explanations and copyable examples for core HTML concepts.</p>
+        </div>
+        
+        <div class="cheat-grid">
+            <!-- 1. Structure -->
+            <div class="cheat-card">
+                <h3>1. Document Boilerplate</h3>
+                <p class="explain">Every HTML file starts with a standard structure defining document type, language, head config, and body content.</p>
+                <ul class="tag-list">
+                    <li><code>&lt;!DOCTYPE html&gt;</code> <span>Defines HTML5 document.</span></li>
+                    <li><code>&lt;html&gt; &lt;head&gt; &lt;body&gt;</code> <span>Core structural skeleton.</span></li>
+                </ul>
+                <div class="example-code">
+                    <button class="copy-mini-btn" onclick="copySnippet(this)">Copy</button>
+<pre><code><span class="html-tag">&lt;!DOCTYPE html&gt;</span>
+<span class="html-tag">&lt;html</span> <span class="html-attr">lang</span>=<span class="html-val">"en"</span><span class="html-tag">&gt;</span>
+<span class="html-tag">&lt;head&gt;</span>
+    <span class="html-tag">&lt;meta</span> <span class="html-attr">charset</span>=<span class="html-val">"UTF-8"</span><span class="html-tag">&gt;</span>
+    <span class="html-tag">&lt;title&gt;</span>My Page<span class="html-tag">&lt;/title&gt;</span>
+<span class="html-tag">&lt;/head&gt;</span>
+<span class="html-tag">&lt;body&gt;</span>
+    <span class="html-tag">&lt;h1&gt;</span>Hello World!<span class="html-tag">&lt;/h1&gt;</span>
+<span class="html-tag">&lt;/body&gt;</span>
+<span class="html-tag">&lt;/html&gt;</span></code></pre>
+                </div>
+            </div>
+
+            <!-- 2. Text & Typography -->
+            <div class="cheat-card">
+                <h3>2. Text & Typography</h3>
+                <p class="explain">Used for titles, paragraphs, line breaks, and emphasizing text styles.</p>
+                <ul class="tag-list">
+                    <li><code>&lt;h1&gt; to &lt;h6&gt;</code> <span>Headings (H1 is biggest).</span></li>
+                    <li><code>&lt;p&gt;</code> <span>Paragraph block.</span></li>
+                    <li><code>&lt;strong&gt; / &lt;em&gt;</code> <span>Bold and italic emphasis.</span></li>
+                </ul>
+                <div class="example-code">
+                    <button class="copy-mini-btn" onclick="copySnippet(this)">Copy</button>
+<pre><code><span class="html-tag">&lt;h1&gt;</span>Main Heading<span class="html-tag">&lt;/h1&gt;</span>
+<span class="html-tag">&lt;p&gt;</span>This is a <span class="html-tag">&lt;strong&gt;</span>bold<span class="html-tag">&lt;/strong&gt;</span> paragraph.<span class="html-tag">&lt;/p&gt;</span>
+<span class="html-tag">&lt;br&gt;</span> <span class="comment">&lt;!-- Line Break --&gt;</span></code></pre>
+                </div>
+            </div>
+
+            <!-- 3. Links & Images -->
+            <div class="cheat-card">
+                <h3>3. Links & Media</h3>
+                <p class="explain">Connect pages using anchor links and embed images or media assets.</p>
+                <ul class="tag-list">
+                    <li><code>&lt;a href="..."&gt;</code> <span>Hyperlink to other pages/sites.</span></li>
+                    <li><code>&lt;img src="..." alt="..."&gt;</code> <span>Embed image files.</span></li>
+                </ul>
+                <div class="example-code">
+                    <button class="copy-mini-btn" onclick="copySnippet(this)">Copy</button>
+<pre><code><span class="html-tag">&lt;a</span> <span class="html-attr">href</span>=<span class="html-val">"https://google.com"</span> <span class="html-attr">target</span>=<span class="html-val">"_blank"</span><span class="html-tag">&gt;</span>Visit Google<span class="html-tag">&lt;/a&gt;</span>
+<span class="html-tag">&lt;img</span> <span class="html-attr">src</span>=<span class="html-val">"logo.png"</span> <span class="html-attr">alt</span>=<span class="html-val">"Site Logo"</span><span class="html-tag">&gt;</span></code></pre>
+                </div>
+            </div>
+
+            <!-- 4. Lists -->
+            <div class="cheat-card">
+                <h3>4. Lists (Ordered & Unordered)</h3>
+                <p class="explain">Organize item groups with bullet points or numbered numeric lists.</p>
+                <ul class="tag-list">
+                    <li><code>&lt;ul&gt; &amp; &lt;li&gt;</code> <span>Unordered bullet list.</span></li>
+                    <li><code>&lt;ol&gt; &amp; &lt;li&gt;</code> <span>Ordered numbered list.</span></li>
+                </ul>
+                <div class="example-code">
+                    <button class="copy-mini-btn" onclick="copySnippet(this)">Copy</button>
+<pre><code><span class="html-tag">&lt;ul&gt;</span>
+    <span class="html-tag">&lt;li&gt;</span>HTML<span class="html-tag">&lt;/li&gt;</span>
+    <span class="html-tag">&lt;li&gt;</span>CSS<span class="html-tag">&lt;/li&gt;</span>
+    <span class="html-tag">&lt;li&gt;</span>JavaScript<span class="html-tag">&lt;/li&gt;</span>
+<span class="html-tag">&lt;/ul&gt;</span></code></pre>
+                </div>
+            </div>
+
+            <!-- 5. Tables -->
+            <div class="cheat-card">
+                <h3>5. Tables</h3>
+                <p class="explain">Display tabular data using rows (`tr`), headers (`th`), and cells (`td`).</p>
+                <ul class="tag-list">
+                    <li><code>&lt;table&gt;, &lt;tr&gt;, &lt;th&gt;, &lt;td&gt;</code> <span>Grid data tags.</span></li>
+                </ul>
+                <div class="example-code">
+                    <button class="copy-mini-btn" onclick="copySnippet(this)">Copy</button>
+<pre><code><span class="html-tag">&lt;table</span> <span class="html-attr">border</span>=<span class="html-val">"1"</span><span class="html-tag">&gt;</span>
+    <span class="html-tag">&lt;tr&gt;</span><span class="html-tag">&lt;th&gt;</span>Name<span class="html-tag">&lt;/th&gt;</span><span class="html-tag">&lt;th&gt;</span>Skill<span class="html-tag">&lt;/th&gt;</span><span class="html-tag">&lt;/tr&gt;</span>
+    <span class="html-tag">&lt;tr&gt;</span><span class="html-tag">&lt;td&gt;</span>Rahul<span class="html-tag">&lt;/td&gt;</span><span class="html-tag">&lt;td&gt;</span>Frontend<span class="html-tag">&lt;/td&gt;</span><span class="html-tag">&lt;/tr&gt;</span>
+<span class="html-tag">&lt;/table&gt;</span></code></pre>
+                </div>
+            </div>
+
+            <!-- 6. Forms & Inputs -->
+            <div class="cheat-card">
+                <h3>6. Forms & Inputs</h3>
+                <p class="explain">Collect user input data like text, emails, password fields, and submit buttons.</p>
+                <ul class="tag-list">
+                    <li><code>&lt;form&gt; &amp; &lt;input&gt;</code> <span>Interactive inputs.</span></li>
+                    <li><code>&lt;button type="submit"&gt;</code> <span>Action trigger.</span></li>
+                </ul>
+                <div class="example-code">
+                    <button class="copy-mini-btn" onclick="copySnippet(this)">Copy</button>
+<pre><code><span class="html-tag">&lt;form&gt;</span>
+    <span class="html-tag">&lt;input</span> <span class="html-attr">type</span>=<span class="html-val">"email"</span> <span class="html-attr">placeholder</span>=<span class="html-val">"Enter email"</span><span class="html-tag">&gt;</span>
+    <span class="html-tag">&lt;button</span> <span class="html-attr">type</span>=<span class="html-val">"submit"</span><span class="html-tag">&gt;</span>Submit<span class="html-tag">&lt;/button&gt;</span>
+<span class="html-tag">&lt;/form&gt;</span></code></pre>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section" id="faq">
+        <div class="section-header"><h2>Frequently Asked Questions</h2></div>
+        <details><summary>What code editor do you use in your tutorials?</summary><div class="faq-answer">I primarily use Visual Studio Code (VS Code).</div></details>
+        <details><summary>Can I use your source code for my own projects?</summary><div class="faq-answer">Absolutely! All the source code provided is completely free.</div></details>
+        <details><summary>Where can I host my HTML/CSS portfolio for free?</summary><div class="faq-answer">I highly recommend using GitHub Pages, Netlify, or Vercel.</div></details>
+    </section>
+
+    <!-- Reviews Section -->
+    <section class="reviews-section" id="reviews">
+        <div class="section-header"><h2>Student Reviews</h2></div>
+        <div class="reviews-grid">
+            <div class="review-card">
+                <div class="stars">★★★★★</div>
+                <p class="review-text">"The Modern Portfolio tutorial changed my life! I got my first freelance client using the code provided here."</p>
+                <div class="reviewer">- Rahul Sharma</div>
+            </div>
+            <div class="review-card">
+                <div class="stars">★★★★★</div>
+                <p class="review-text">"I always struggled with CSS Flexbox, but webdesign12 makes it so easy to understand. Best web dev channel."</p>
+                <div class="reviewer">- Amit Kumar</div>
+            </div>
+        </div>
+
+        <div class="review-form-container">
+            <h3>Leave Your Feedback</h3>
+            <p>Tell me what you think about my tutorials!</p>
+            <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST" class="review-form">
+                <input type="text" name="name" placeholder="Your Name" required>
+                <input type="email" name="email" placeholder="Your Email Address" required>
+                <select name="rating" required>
+                    <option value="" disabled selected>Give a Rating...</option>
+                    <option value="5 Stars">★★★★★ (5/5) Excellent</option>
+                    <option value="4 Stars">★★★★☆ (4/5) Very Good</option>
+                    <option value="3 Stars">★★★☆☆ (3/5) Good</option>
+                </select>
+                <textarea name="message" placeholder="Write your review here..." required></textarea>
+                <button type="submit" class="btn">Submit Review</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Community Section -->
+    <section class="community" id="community">
+        <h2>Join the Coding Community</h2>
+        <p>Get access to new tutorials, source codes, and web development tips.</p>
+        <a href="https://www.youtube.com/@webdesign12_04?sub_confirmation=1" target="_blank" class="btn">Subscribe on YouTube</a>
+    </section>
+
+    <!-- Scripts -->
+    <script>
+        function copySnippet(btn) {
+            const container = btn.closest('.example-code') || btn.closest('.video-code-box');
+            const codeElement = container.querySelector('code');
+            
+            navigator.clipboard.writeText(codeElement.innerText).then(() => {
+                const originalText = btn.innerText;
+                const originalBg = btn.style.backgroundColor;
+                
+                btn.innerText = "Copied!";
+                btn.style.backgroundColor = "var(--primary)";
+                btn.style.color = "#fff";
+                
+                setTimeout(() => {
+                    btn.innerText = originalText;
+                    btn.style.backgroundColor = originalBg;
+                    btn.style.color = ""; 
+                }, 2000);
+            }).catch(err => {
+                alert("Failed to copy code.");
+            });
+        }
+
+        const themeToggleBtn = document.getElementById('themeToggle');
+        themeToggleBtn.addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+            if(document.body.classList.contains('dark-mode')) {
+                themeToggleBtn.innerText = '☀️';
+            } else {
+                themeToggleBtn.innerText = '🌙';
+            }
+        });
+
+        let scrollTopBtn = document.getElementById("scrollTopBtn");
+        window.onscroll = function() {
+            if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+                scrollTopBtn.style.display = "block";
+            } else {
+                scrollTopBtn.style.display = "none";
+            }
+        };
+
+        function scrollToTop() {
+            window.scrollTo({top: 0, behavior: 'smooth'});
+        }
+    </script>
+
+</body>
+</html>
