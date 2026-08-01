@@ -233,6 +233,28 @@
             .bento-grid { grid-template-columns: 1fr; }
             .nav-links a { display: none; }
         }
+        /* --- Mobile View & Responsiveness Fixes --- */
+@media (max-width: 950px) {
+    .hero { 
+        flex-direction: column !important; 
+        text-align: center; 
+        height: auto !important; 
+        padding-top: 110px !important; 
+    }
+    .hero-content { 
+        padding-right: 0 !important; 
+        margin-bottom: 40px; 
+    }
+    .hero-content p { 
+        margin: 0 auto 2rem auto !important; 
+    }
+    .bento-grid, .cheat-grid, .reviews-grid { 
+        grid-template-columns: 1fr !important; 
+    }
+    .nav-links a { 
+        display: none !important; 
+    }
+}
     </style>
 </head>
 <body>
